@@ -14,12 +14,11 @@ layout: default
     <div id="main" data-exif='{{ site.exif }}'>
         {% for image in site.static_files %}
         {% if image.path contains 'fulls' %}
-        <article class="thumb">
+        <article
+            class="thumb {% if image.name contains '-v' %}vertical{% elsif image.name contains '-w' %}wide{% else %}horizontal{% endif %}">
             <a href="{{ site.baseurl }}{{ site.image_fulls_loc }}/{{ image.name }}" class="image">
                 <img src="{{ site.baseurl }}{{ site.image_thumbs_loc }}/{{ image.name }}" alt="" loading="lazy" />
             </a>
-            <!--<h2></h2>
-            <p></p>-->
         </article>
         {% endif %}
         {% endfor %}
