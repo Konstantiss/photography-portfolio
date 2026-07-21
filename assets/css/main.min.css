@@ -1474,10 +1474,12 @@ body.modal-active #wrapper {
 }
 
 body.modal-active #wrapper:after {
-    pointer-events: auto;
-    opacity: 1;
-    visibility: visible;
-    z-index: 10003
+    /* Keep the background blurred but avoid adding an extra dark
+       overlay (vignette). Make the :after element non-visible. */
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10003;
 }
 
 #wrapper:before {
@@ -1678,7 +1680,11 @@ body.is-preload #header {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     opacity: 1;
     overflow: hidden;
-    position: relative
+    position: relative;
+    /* Allow thumbnail height to be determined by the image's aspect
+       ratio so portrait and landscape thumbnails can coexist. */
+    width: 25%;
+    margin-bottom: 1em;
 }
 
 #main .thumb:after {
@@ -1692,16 +1698,15 @@ body.is-preload #header {
 
 #main .thumb>.image {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    /* Use the actual <img> element for sizing instead of forcing a
+       background image that crops and forces uniform boxes. */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #242629;
     border: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%
+    position: static;
+    width: 100%;
 }
 
 #main .thumb>h2 {
