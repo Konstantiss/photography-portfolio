@@ -38,3 +38,18 @@
 		}
 	}
 }
+
+#main .thumb {
+    height: auto;
+}
+
+#main .thumb > .image {
+    position: relative;
+    display: block;
+}
+
+#main .thumb > .image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
